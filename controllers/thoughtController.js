@@ -44,7 +44,7 @@ module.exports = {
         )
         .catch((err) => res.status(500).json(err));
      },
-    //  Put/update a new thought by it's _id
+    //  Put/update a new thought by it's id
      updateThought(req, res) {
         Thought.findOneAndUpdate(
             {_id: req.params.thoughtId},
@@ -60,5 +60,25 @@ module.exports = {
             console.log(err);
             return res.status(500).json(err);
         });
-     }
+     },
+    //  Delete a thought by its id
+    deleteThought(req, res) {
+        Thought.findOneAndDelete({ _id: req.params.thoughtId })
+        .then((thought) =>
+            !thought
+                ? res.status(404).json({ message: 'No thought with this ID found' })
+                : User.findOneAndUpdate(
+                    { thoughts: req.params.thoughtId },
+                    { $pull: { thoughts: {thoughtId: req.params.thoughtId} } },
+                    { runValidators: true, new: true }
+                  )
+        )
+        .then((user) => 
+            !user
+                ? res.status(404).json({ message: 'No user with this deleted thought found!' })
+                : res.json({updatedUser: user, message: 'Thought deleted and removed from user'})
+        )
+        .catch((err) => res.status(500).json(err));
+    },
+    
 }
