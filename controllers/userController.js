@@ -9,7 +9,9 @@ const headCount = async () => {
 module.exports = {
     // Get all users
     getUsers(req, res) {
-      User.find()
+      User.find({})
+      .populate('thoughts')
+      .populate('friends')
         .then(async (users) => {
           const userObj = {
             users,
@@ -31,7 +33,7 @@ module.exports = {
         .then(async (user) => 
           !user
             ? res.status(404).json({message: 'No user with that ID'})
-            : res.json(user.username)
+            : res.json({user})
         )
         .catch((err) => {
           console.log(err);
@@ -86,21 +88,21 @@ module.exports = {
       .then((user) =>
         !user
           ? res.status(404).json({ message: 'No user found with that ID :(' })
-          : res.json({updatedUser: user, message: 'Friend added'})
+          : res.json({updatedUser: user.username, message: `Friend, ${friendId.username}, added`})
       )
       .catch((err) => res.status(500).json(err));
   },
   // Remove a friend from a user
   removeFriend(req, res) {
-    Student.findOneAndUpdate(
+    User.findOneAndUpdate(
       { _id: req.params.userId },
       { $pull: { friends: req.params.friendId  } },
       { runValidators: true, new: true }
     )
       .then((user) =>
         !user
-          ? res.status(404).json({ message: 'No student found with that ID :(' })
-          : res.json({updatedUser: user, message: 'Friend removed'})
+          ? res.status(404).json({ message: 'No friend found with that ID :(' })
+          : res.json({updatedUser: user, message: `Friend, ${friendId.username}, removed`})
       )
       .catch((err) => res.status(500).json(err));
   }

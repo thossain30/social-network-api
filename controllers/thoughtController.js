@@ -20,7 +20,7 @@ module.exports = {
         .then(async (thought) => 
           !thought
             ? res.status(404).json({message: 'No thought with this ID found'})
-            : res.json(thought.thoughtText)
+            : res.json(thought)
         )
         .catch((err) => {
           console.log(err);
@@ -32,7 +32,7 @@ module.exports = {
         Thought.create(req.body)
         .then((thought) => {
             return User.findOneAndUpdate(
-                {_id: req.body.userId},
+                {username: req.body.username},
                 {$push: {thoughts: thought._id} },
                 { new: true }
             );
@@ -97,9 +97,9 @@ module.exports = {
     // Remove reaction from thought
     removeReaction(req, res) {
         Thought.findOneAndUpdate(
-        { _id: req.params.thoughtId },
-        { $pull: { reactions: { reactionId: req.params.reactionId } } },
-        { runValidators: true, new: true }
+            { _id: req.params.thoughtId },
+            { $pull: { reactions: {reactionId: req.params.reactionId} } },
+            { runValidators: true, new: true }
         )
         .then((thought) =>
             !thought
