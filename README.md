@@ -36,14 +36,14 @@ All Reaction and Friend Routes
 https://github.com/thossain30/social-network-api/assets/54952959/faefe1fe-a389-4f16-b8f2-b1bbe61a81f3
 
 
-## Installation 🗳
+## Installation
 
 - Download or clone repository to use this application on local machine.
 - `Node.js` and `MongoDB` is required to run the application
 - To install necessary dependencies, navigate to the root directory and run the following command:
   `npm i`
 
-## Usage 💡
+## Usage
 
 After installation :
 
@@ -51,7 +51,7 @@ After installation :
 - When the server is started, the Mongoose models are synched to the MongoDB database.
 - Open MongoDB and connect to the MongoDB URI `mongodb://localhost:27017`. On the list of databases, click on `socialDB` to see `thoughts` and `users` data.
 
-## Technologies 🔧
+## Technologies
 
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [Express.js](https://expressjs.com/)
@@ -60,13 +60,13 @@ After installation :
 - [Mongoose](https://mongoosejs.com/)
 
 
-## License 📜
+## License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/siennameow/social-network-API/blob/main/LICENSE)
 MIT License
 
 
-## Questions ❓
+## Questions
 
-📩 If you have any question, email me here at : tamjidh99@gmail.com.com<br/>
-:octocat: My Github page is [thossain30](https://github.com/thossain30)
+If you have any question, email me here at : tamjidh99@gmail.com.com<br/>
+My Github page is [thossain30](https://github.com/thossain30)
