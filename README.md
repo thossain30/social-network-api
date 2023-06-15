@@ -68,5 +68,5 @@ MIT License
 
 ## Questions
 
-If you have any question, email me here at : tamjidh99@gmail.com.com<br/>
+If you have any question, email me here at : tamjidh99@gmail.com<br/>
 My Github page is [thossain30](https://github.com/thossain30)
